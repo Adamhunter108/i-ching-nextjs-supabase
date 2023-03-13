@@ -1,9 +1,11 @@
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 
+import Nav from '@/components/Nav';
 import LoadingDots from '@/components/ui/LoadingDots';
 import Logo from '@/components/icons/Logo';
 import { getURL } from '@/utils/helpers';
@@ -21,15 +23,26 @@ const SignIn = () => {
 
   if (!user)
     return (
+      <div>
+        <Nav />
+
       <div className="flex justify-center height-screen-helper">
         <div className="flex flex-col justify-between max-w-lg p-3 m-auto w-80 ">
           <div className="flex justify-center pb-12 ">
-            <Logo width="64px" height="64px" />
+            {/* <Logo width="64px" height="64px" /> */}
+            <div className="flex justify-center mt-16 animate-spin-slow">
+                <Image
+                    src="/images/yinyang.png"
+                    width={170}
+                    height={175}
+                    alt="Yin Yang"
+                />
+                </div>
           </div>
           <div className="flex flex-col space-y-4">
             <Auth
               supabaseClient={supabaseClient}
-              providers={['github']}
+              providers={['google']}
               redirectTo={getURL()}
               magicLink={true}
               appearance={{
@@ -47,6 +60,7 @@ const SignIn = () => {
             />
           </div>
         </div>
+      </div>
       </div>
     );
 

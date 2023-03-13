@@ -1,10 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useUser } from '@/utils/useUser'
 
 export default function Nav() {
     const router = useRouter()
     const currentRoute = router.asPath
+    const supabaseClient = useSupabaseClient()
+    const { user } = useUser()
 
     const [showSidebar, setShowSidebar] = React.useState<boolean>(false)
 
@@ -38,10 +42,81 @@ export default function Nav() {
                     I Ching
                 </h3>
 
+                {/* <Link href="/signin">
+                    <div
+                        className={`${currentRoute === "/signin" ? "text-indigo-500" : "text-gray-300"} "justify-center grid gap-1 hover:bg-gray-700/40 hover:text-indigo-500 px-3 py-4 rounded-md text-xl font-medium inline-block"`}
+                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                        <span className="inline-block">Sign In</span>
+                    </div>
+                </Link>
+
+                <Link href="/">
+                    <div
+                        className={`${currentRoute === "/signin" ? "text-indigo-500" : "text-gray-300"} "justify-center grid gap-1 hover:bg-gray-700/40 hover:text-indigo-500 px-3 py-4 rounded-md text-xl font-medium inline-block"`}
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                        </svg>
+
+                        <span className="inline-block">Sign out</span>
+                    </div>
+                </Link> */}
+
+                {user ? (
+                    <span
+                        onClick={async () => {
+                        await supabaseClient.auth.signOut();
+                        router.push('/signin');
+                        }}
+                    >
+                        <div
+                            className={`${currentRoute === "/signin" ? "text-indigo-500" : "text-gray-300"} "justify-center grid gap-1 hover:bg-gray-700/40 hover:text-indigo-500 px-3 py-4 rounded-md text-xl font-medium inline-block"`}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                            </svg>
+
+                            <span className="inline-block">Sign out</span>
+                        </div>
+                    </span>
+                ) : (
+                    <Link href="/signin">
+                        <div
+                            className={`${currentRoute === "/signin" ? "text-indigo-500" : "text-gray-300"} "justify-center grid gap-1 hover:bg-gray-700/40 hover:text-indigo-500 px-3 py-4 rounded-md text-xl font-medium inline-block"`}
+                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                            <span className="inline-block">Sign In</span>
+                        </div>
+                    </Link>
+                )}
+
+                {user ? (
+                    <div>
+                    <div className="border-t border-white/40" />
+                        <Link href="/profile">
+                            <div
+                                className={`${currentRoute === "/signin" ? "text-indigo-500" : "text-gray-300"} "justify-center grid gap-1 hover:bg-gray-700/40 hover:text-indigo-500 px-3 py-4 rounded-md text-xl font-medium inline-block"`}
+                            >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                                <span className="inline-block">Profile</span>
+                            </div>
+                        </Link>
+                    </div>
+                ) : null}
+
+
+                <div className="border-t border-white/40" />
                 
                 <Link href="/">
                     <div
-                        className={`${currentRoute === "/" ? "text-indigo-500" : "text-gray-300"} "justify-center grid grid-cols-10 gap-1 hover:bg-gray-700/40 hover:text-indigo-500 px-3 py-4 rounded-md text-xl font-medium"`}
+                        className={`${currentRoute === "/" ? "text-indigo-500" : "text-gray-300"} "justify-center grid gap-1 hover:bg-gray-700/40 hover:text-indigo-500 px-3 py-4 rounded-md text-xl font-medium"`}
                     >
                         <svg className="w-7 h-7" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                             <path d="M511.8 287.6L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L416 100.7V64C416 46.33 430.3 32 448 32H480C497.7 32 512 46.33 512 64V185L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6L511.8 287.6z"/>
@@ -54,7 +129,7 @@ export default function Nav() {
 
                 <Link href="/about">
                     <div
-                        className={`${currentRoute === "/about" ? "text-indigo-500" : "text-gray-300"} "justify-center grid grid-cols-10 gap-1 hover:bg-gray-700/40 hover:text-indigo-500 px-3 py-4 rounded-md text-xl font-medium"`}
+                        className={`${currentRoute === "/about" ? "text-indigo-500" : "text-gray-300"} "justify-center grid gap-1 hover:bg-gray-700/40 hover:text-indigo-500 px-3 py-4 rounded-md text-xl font-medium"`}
                     >
                         <svg className="w-7 h-7" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/>
