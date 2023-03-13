@@ -143,3 +143,31 @@ create policy "Can only view own subs data." on subscriptions for select using (
  */
 drop publication if exists supabase_realtime;
 create publication supabase_realtime for table products, prices;
+
+
+/** 
+* NOTE: I added this via supabase dashboard sql editor, to use this file you need the supabase cli setup
+*/
+CREATE SCHEMA iching;
+/** 
+* I Ching - users
+*/
+CREATE TABLE iching.users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) NOT NULL UNIQUE,
+  name VARCHAR(255),
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+
+/** 
+* I Ching - daily hex
+*/
+CREATE TABLE iching.user_daily_hexagrams (
+  user_id INTEGER REFERENCES iching.users(id) NOT NULL,
+  number_date DATE NOT NULL,
+  daily_hexagram INTEGER NOT NULL,
+  PRIMARY KEY (user_id, number_date)
+);
