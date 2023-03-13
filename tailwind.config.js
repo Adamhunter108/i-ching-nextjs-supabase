@@ -10,8 +10,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        'spin-slow': 'spin 15s linear infinite',
+      },
       fontFamily: {
-        sans: ['var(--font-sans)', ...fontFamily.sans]
+        sans: ['var(--font-sans)', ...fontFamily.sans],
+        carter: ['Carter One', 'sans-serif'],
+        raj: ['Rajdhani', 'sans-serif'],
       }
     }
   },

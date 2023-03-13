@@ -14,8 +14,8 @@ interface Props extends PropsWithChildren {
 export default function Layout({ children, meta: pageMeta }: Props) {
   const router = useRouter();
   const meta = {
-    title: 'Next.js Subscription Starter',
-    description: 'Brought to you by Vercel, Stripe, and Supabase.',
+    title: 'I Ching: Book of Changes',
+    description: 'Consult the Book of Changes, get a daily I Ching hexagram and reading.',
     cardImage: '/og.png',
     ...pageMeta
   };
@@ -44,7 +44,7 @@ export default function Layout({ children, meta: pageMeta }: Props) {
       </Head>
       <Navbar />
       <main id="skip">{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
