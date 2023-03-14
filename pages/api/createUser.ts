@@ -3,10 +3,9 @@ import { hash } from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 import { createClient } from '@supabase/supabase-js';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export default async function createUser(
   req: NextApiRequest,
@@ -31,24 +30,6 @@ export default async function createUser(
     }
 
     const { id } = data;
-
-    const { data: profileData, error: profileError } = await supabase
-      .from('profiles')
-      .insert([{ user_id: id }])
-      .single();
-
-    if (profileError) {
-      throw profileError;
-    }
-
-    const { data: customerData, error: customerError } = await supabase
-      .from('customers')
-      .insert([{ id: uuidv4(), user_id: id }])
-      .single();
-
-    if (customerError) {
-      throw customerError;
-    }
 
     return res.status(200).json({ id });
   } catch (error) {
