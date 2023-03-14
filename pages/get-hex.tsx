@@ -5,7 +5,7 @@ import HexInterpretations from '../data/HexInterpretations'
 // import ParticleBackGround from '../components/ParticleBackGround'
 import Nav from '../components/Nav'
 import ParticleBackGround from '@/components/ParticleBackground'
-// import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 export default function GetHex() {
 
@@ -106,7 +106,7 @@ export default function GetHex() {
 
 
             {/* SHARE BUTTON */}
-        {/* <div className="flex justify-center pt-10">
+        <div className="flex justify-center pt-10">
         {HexInterpretations.map((data) => (
             value === data.id ? 
                 <CopyToClipboard text={`My Daily I Ching reading is 
@@ -132,7 +132,7 @@ bookofchanges.app`}>
                         </button>}
                 </CopyToClipboard> : null
         ))}
-        </div> */}
+        </div>
 
         </main>
     </div>
