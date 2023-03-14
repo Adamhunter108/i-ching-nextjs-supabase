@@ -10,6 +10,7 @@ specifiers:
   '@types/bcrypt': ^5.0.0
   '@types/node': ^18.14.4
   '@types/react': ^18.0.28
+  '@types/react-copy-to-clipboard': ^5.0.4
   '@types/uuid': ^9.0.1
   autoprefixer: ^10.4.13
   bcrypt: ^5.1.0
@@ -55,6 +56,7 @@ devDependencies:
   '@types/bcrypt': 5.0.0
   '@types/node': 18.14.4
   '@types/react': 18.0.28
+  '@types/react-copy-to-clipboard': 5.0.4
   '@types/uuid': 9.0.1
   autoprefixer: 10.4.13_postcss@8.4.21
   postcss: 8.4.21
@@ -354,6 +356,12 @@ packages:
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+    dev: true
+
+  /@types/react-copy-to-clipboard/5.0.4:
+    resolution: {integrity: sha512-otTJsJpofYAeaIeOwV5xBUGpo6exXG2HX7X4nseToCB2VgPEBxGBHCm/FecZ676doNR7HCSTVtmohxfG2b3/yQ==}
+    dependencies:
+      '@types/react': 18.0.28
     dev: true
 
   /@types/react/18.0.28:
