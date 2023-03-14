@@ -42,6 +42,8 @@ export default function Nav() {
                     I Ching
                 </h3>
 
+                <p className="text-lg text-gray-200 flex justify-center">{user ? `Signed in as ${user.email}` : null}</p>
+
                 {/* <Link href="/signin">
                     <div
                         className={`${currentRoute === "/signin" ? "text-indigo-500" : "text-gray-300"} "justify-center grid gap-1 hover:bg-gray-700/40 hover:text-indigo-500 px-3 py-4 rounded-md text-xl font-medium inline-block"`}
@@ -71,9 +73,10 @@ export default function Nav() {
                         await supabaseClient.auth.signOut();
                         router.push('/signin');
                         }}
+                        className="cursor-pointer"
                     >
                         <div
-                            className={`${currentRoute === "/signin" ? "text-indigo-500" : "text-gray-300"} "justify-center grid gap-1 hover:bg-gray-700/40 hover:text-indigo-500 px-3 py-4 rounded-md text-xl font-medium inline-block cursor-pointer"`}
+                            className={`${currentRoute === "/signin" ? "text-indigo-500" : "text-gray-300"} "justify-center grid gap-1 hover:bg-gray-700/40 hover:text-indigo-500 px-3 py-4 rounded-md text-xl font-medium inline-block"`}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />

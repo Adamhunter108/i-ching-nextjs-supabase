@@ -1,8 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useUser } from '@/utils/useUser'
 
 export default function Hero() {
+    const { user } = useUser()
+
     return (
         <div>
             <main>
@@ -17,6 +20,7 @@ export default function Hero() {
                 </div>
 
                 <div className="">
+                {/* <p className="pt-3 flex justify-center text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200 text-3xl font-thin">Welcome{user ? `, ${user.email}` : null} to the</p> */}
                 <p className="pt-3 flex justify-center text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200 text-3xl font-thin">Welcome to the</p>
                 <h1 className="pt-2 flex justify-center font-carter text-7xl lg:text-8xl">I Ching</h1>
                 <p className="pt-4 flex justify-center text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200 text-3xl font-thin">Consult with</p>
