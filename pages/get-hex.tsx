@@ -4,6 +4,7 @@ import Head from 'next/head'
 import HexInterpretations from '../data/HexInterpretations'
 // import ParticleBackGround from '../components/ParticleBackGround'
 import Nav from '../components/Nav'
+import ParticleBackGround from '@/components/ParticleBackground'
 // import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 export default function GetHex() {
@@ -33,6 +34,8 @@ export default function GetHex() {
             <title>Consult the I Ching: the Book of Changes</title>
             <meta name="description" content="Consult the Book of Changes, get your daily I Ching reading and share your results." />
         </Head>
+
+        <ParticleBackGround />
 
         <Nav />
 

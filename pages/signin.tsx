@@ -6,6 +6,7 @@ import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 
 import Nav from '@/components/Nav';
+import ParticleBackGround from '@/components/ParticleBackground';
 import LoadingDots from '@/components/ui/LoadingDots';
 import Logo from '@/components/icons/Logo';
 import { getURL } from '@/utils/helpers';
@@ -24,6 +25,7 @@ const SignIn = () => {
   if (!user)
     return (
       <div>
+        {/* <ParticleBackGround /> */}
         <Nav />
 
       <div className="flex justify-center height-screen-helper">

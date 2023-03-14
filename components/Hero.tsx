@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import ParticleBackGround from './ParticleBackground'
 import { useUser } from '@/utils/useUser'
 
 export default function Hero() {
@@ -9,8 +10,8 @@ export default function Hero() {
     return (
         <div>
             <main>
-
-                <div className="flex justify-center mt-16 animate-spin-slow">
+                <ParticleBackGround />
+                <div className="flex justify-center mt-10 animate-spin-slow">
                 <Image
                     src="/images/yinyang.png"
                     width={270}
