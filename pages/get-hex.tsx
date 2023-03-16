@@ -2,12 +2,15 @@ import React from 'react'
 import Image from 'next/image'
 import Head from 'next/head'
 import HexInterpretations from '../data/HexInterpretations'
-// import ParticleBackGround from '../components/ParticleBackGround'
 import Nav from '../components/Nav'
 import ParticleBackGround from '@/components/ParticleBackground'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useUser } from '@/utils/useUser'
 
 export default function GetHex() {
+    const supabaseClient = useSupabaseClient()
+    const { user } = useUser()
 
     // I CHING HAS 64 POSSIBLE OUTCOMES
     const randomValue: number = Math.floor(Math.random() * 64) + 1
@@ -126,13 +129,33 @@ bookofchanges.app`}>
                         className="inline-flex items-center px-5 py-2 border border-transparent text-base rounded-full shadow-sm text-indigo-600 bg-white/70 hover:text-gray-400 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" 
                         onClick={handleCopyClick}>
                             Share reading
-                            <svg className="w-6 h-5" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <svg className="pl-2 w-6 h-5" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                                 <path d="M285.4 197.1L191.3 244.1C191.8 248 191.1 251.1 191.1 256C191.1 260 191.8 263.1 191.3 267.9L285.4 314.9C302.6 298.2 326.1 288 352 288C405 288 448 330.1 448 384C448 437 405 480 352 480C298.1 480 256 437 256 384C256 379.1 256.2 376 256.7 372.1L162.6 325.1C145.4 341.8 121.9 352 96 352C42.98 352 0 309 0 256C0 202.1 42.98 160 96 160C121.9 160 145.4 170.2 162.6 186.9L256.7 139.9C256.2 135.1 256 132 256 128C256 74.98 298.1 32 352 32C405 32 448 74.98 448 128C448 181 405 224 352 224C326.1 224 302.6 213.8 285.4 197.1L285.4 197.1z"/>
                             </svg> 
                         </button>}
                 </CopyToClipboard> : null
         ))}
         </div>
+
+            {/* SAVE BUTTON */}
+            {user ? 
+                <div className="flex justify-center pt-4">
+                    {HexInterpretations.map((data) => (
+                        value === data.id ? 
+                            <button 
+                                type="button"
+                                className="inline-flex items-center px-5 py-2 border border-transparent text-base rounded-full shadow-sm text-indigo-600 bg-white/70 hover:text-gray-400 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" 
+                                // onClick={handleCopyClick}
+                            >
+                                    Save reading
+                                    <svg className="pl-2 w-6 h-5" aria-hidden="true" fill="currentColor"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                        <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                                    </svg>
+                            </button>
+                        : null
+                    ))}
+                </div>
+            : null}
 
         </main>
     </div>
