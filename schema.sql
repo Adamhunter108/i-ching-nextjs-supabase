@@ -165,9 +165,33 @@ CREATE TABLE iching.users (
 /** 
 * I Ching - daily hex
 */
-CREATE TABLE iching.user_daily_hexagrams (
-  user_id INTEGER REFERENCES iching.users(id) NOT NULL,
-  number_date DATE NOT NULL,
-  daily_hexagram INTEGER NOT NULL,
-  PRIMARY KEY (user_id, number_date)
+-- CREATE TABLE iching.user_daily_hexagrams (
+--   user_id INTEGER REFERENCES iching.users(id) NOT NULL,
+--   number_date DATE NOT NULL,
+--   daily_hexagram INTEGER NOT NULL,
+--   PRIMARY KEY (user_id, number_date)
+-- );
+-- CREATE TABLE iching.user_hexagrams (
+--   user_id INTEGER REFERENCES public.users(id) NOT NULL,
+--   hexagram_date DATE NOT NULL,
+--   hexagram INTEGER NOT NULL,
+--   PRIMARY KEY (user_id)
+-- );
+-- CREATE TABLE hex_values (
+--   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+--   user_id UUID NOT NULL REFERENCES auth.users(id),
+--   hex_value INTEGER NOT NULL,
+--   created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL
+-- );
+
+
+-- CREATE SCHEMA IF NOT EXISTS iching;
+
+CREATE TABLE iching.iching_readings (
+  id SERIAL PRIMARY KEY,
+  user_id UUID REFERENCES auth.users ON DELETE CASCADE,
+  reading_number INT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE NOT NULL
 );
+
+GRANT ALL PRIVILEGES ON TABLE iching.iching_readings TO public;

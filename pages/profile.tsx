@@ -10,12 +10,25 @@ import {
 import { useUser } from '@/utils/useUser'
 import LoadingDots from '@/components/ui/LoadingDots'
 
+export interface IchingReading {
+    id: number
+    user_id: string
+    reading_number: number
+    created_at: string
+}
 
+interface Props {
+    user: User;
+    ichingReadings: IchingReading[];
+  }
+  
 
-
-export default function profile({ user }: { user: User }) {
+// export default function profile({ user }: { user: User }) {
+export default function profile({ user, ichingReadings }: Props) {
     const [loading, setLoading] = useState(false)
     const { isLoading, subscription, userDetails } = useUser()
+
+    console.log(ichingReadings)
   return (
     <div>
         <Head>
@@ -31,7 +44,18 @@ export default function profile({ user }: { user: User }) {
           </svg>
         </div>
 
-        <h1 className="text-2xl text-gray-300 mt-20 pl-10">Profile</h1>
+        <h1 className="flex justify-center text-2xl text-gray-300 mt-20">Profile for</h1>
+        <h2 className="flex justify-center text-2xl text-gray-300 mt-1"><i>{user.email}</i></h2>
+
+        <div className="flex flex-col items-center mt-10">
+            <h2 className="text-xl font-bold text-gray-300 mb-2">I Ching Readings</h2>
+            {ichingReadings.map((reading) => (
+                <div className="text-gray-400 mb-1" key={reading.id}>
+                Hexagram # {reading.reading_number} - {new Date(reading.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+
+                </div>
+            ))}
+        </div>
 
 
     </div>
@@ -50,12 +74,25 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
           destination: '/signin',
           permanent: false
         }
-      };
+    };
   
+    // Retrieve the Iching readings from the database
+    const { data: ichingReadings, error } = await supabase
+    .from('iching_readings')
+    .select('*')
+    .eq('user_id', session.user.id)
+
+    // if (error) {
+    //     console.error(error)
+    // }
+
+
+
     return {
       props: {
         initialSession: session,
-        user: session.user
+        user: session.user,
+        ichingReadings: ichingReadings ?? [],
       }
     }
   }

@@ -31,6 +31,48 @@ export default function GetHex() {
         }, 2500);
     }
 
+    // const handleSaveClick = async () => {
+    //     if (!user) {
+    //       alert('Please sign in to save your reading')
+    //       return
+    //     }
+      
+    //     try {
+    //       const { data, error } = await supabaseClient
+    //         .from('readings')
+    //         .insert([{ value: randomValue, user_id: user.id }])
+    //       if (error) {
+    //         throw error
+    //       }
+    //       console.log('Saved reading:', data[0])
+    //     } catch (error) {
+    //       console.error('Error saving reading:', error)
+    //     }
+    //   }
+    const handleSaveClick = async () => {
+        if (!user) {
+          alert('You must be logged in to save a reading.')
+          return
+        }
+        if (!value) {
+          alert('You must first perform a divination.')
+          return
+        }
+      
+        const { data, error } = await supabaseClient
+          .from('iching_readings')
+          .insert([{ user_id: user.id, reading_number: value, created_at: new Date().toISOString() }])
+      
+        if (error) {
+          console.error(error)
+          alert('An error occurred while saving the reading.')
+          return
+        }
+      
+        alert('Reading saved successfully.')
+    }
+      
+
   return (
     <div>
         <Head>
@@ -145,7 +187,7 @@ bookofchanges.app`}>
                             <button 
                                 type="button"
                                 className="inline-flex items-center px-5 py-2 border border-transparent text-base rounded-full shadow-sm text-indigo-600 bg-white/70 hover:text-gray-400 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" 
-                                // onClick={handleCopyClick}
+                                onClick={handleSaveClick}
                             >
                                     Save reading
                                     <svg className="pl-2 w-6 h-5" aria-hidden="true" fill="currentColor"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
