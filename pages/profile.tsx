@@ -69,7 +69,7 @@ export default function profile({ user, ichingReadings }: Props) {
         {ichingReadings.length === 0 ?
         <p className="text-gray-300 flex justify-center">your saved readings will appear here</p> :
         <div className="flex flex-col items-center">
-            <h2 className="text-3xl flex justify-center font-bold text-gray-300 mb-4">your saved <span className="font-carter text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200">I Ching</span> readings</h2>
+            <h2 className="text-3xl font-bold text-gray-300 mb-4">your saved <span className="font-carter text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200">I Ching</span> readings</h2>
             <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                 {ichingReadings.reverse().map((reading) => (
                     <li key={reading.id} className="relative">
