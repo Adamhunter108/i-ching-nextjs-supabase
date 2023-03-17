@@ -1,8 +1,7 @@
 # I Ching - Next.js | Supabase
 
 ## ℹ️ `About:`   
-<!-- A Progressive Web-App for getting a daily I Ching reading and sharing results.   -->
-A full-stack Web-App for getting I Ching readings, storing and sharing results.  
+A Progressive Web-App for getting a daily I Ching reading and sharing results.  
   
 The app offers user authentication using both email/password and Single Sign-On (SSO) for Google accounts. While the app is fully functional for users without accounts, those who are not signed in will not be able to save their readings.
 <br><br>
@@ -21,19 +20,19 @@ Back in the day, people would throw yarrow stalks to calculate and construct the
 To use this app, all you need to do is press the Divinate button. We recommend doing only one reading a day and sitting with the result. Each Hexagram is unique and has a number. Feel free to google your Hexagram number to read more about it.
 </details>
 <br>
-<!-- <details>
+<details>
 <summary>
-📲 How to install a pwa app
+📲 How to install a PWA
 </summary> 
 <br>🖥️ Desktop <br>
 Currently, Google Chrome is the only browser with PWA support for desktop operating systems.  In Google Chrome, after the page loads there will be an option to install the app in the address bar next to the share and star icons.<br><br>  
 📱 Mobile <br>
 Safari iOS - Press the "Share" button and select "Add to Home Screen" from the popup.<br>
 Android Chrome - Press the "three dot" icon in the upper right to open the menu. Select "Add to Home screen".
-</details> -->
+</details>
 <br>    
 
-<!-- Visit project: [bookofchanges.app](https://www.bookofchanges.app/) -->
+Visit project: [bookofchanges.app](https://www.bookofchanges.app/)
 
 ---
 
