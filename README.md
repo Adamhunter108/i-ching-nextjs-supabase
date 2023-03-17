@@ -1,4 +1,76 @@
-# Next.js Subscription Payments Starter
+# I Ching - Next.js | Supabase
+
+## ℹ️ `About:`   
+<!-- A Progressive Web-App for getting a daily I Ching reading and sharing results.   -->
+A full-stack Web-App for getting I Ching readings, storing and sharing results.  
+  
+The app offers user authentication using both email/password and Single Sign-On (SSO) for Google accounts. While the app is fully functional for users without accounts, those who are not signed in will not be able to save their readings.
+<br><br>
+<details>
+<summary>
+🤔 What is the I Ching
+</summary>
+The I Ching, usually translated to Book of Changes, dates back to 1,000 BC. This several thousand year old book is regarded as a foundational text of eastern wisdom and philosophy. Originally a divination manual, the I Ching is meant to provide insight and guidance for moral decision making. An I Ching reading comes in the form of a Hexagram which consists of six lines which are either broken (yin) or unbroken (yang).
+</details>  
+<br>
+<details>
+<summary>
+🔮 How to consult the I Ching
+</summary> 
+Back in the day, people would throw yarrow stalks to calculate and construct their Hexagrams. Tossing coins, usually three at a time, is a more modern and convenient method. Those analog methods require calculations and often involve interpreting changing lines.<br>   
+To use this app, all you need to do is press the Divinate button. We recommend doing only one reading a day and sitting with the result. Each Hexagram is unique and has a number. Feel free to google your Hexagram number to read more about it.
+</details>
+<br>
+<!-- <details>
+<summary>
+📲 How to install a pwa app
+</summary> 
+<br>🖥️ Desktop <br>
+Currently, Google Chrome is the only browser with PWA support for desktop operating systems.  In Google Chrome, after the page loads there will be an option to install the app in the address bar next to the share and star icons.<br><br>  
+📱 Mobile <br>
+Safari iOS - Press the "Share" button and select "Add to Home Screen" from the popup.<br>
+Android Chrome - Press the "three dot" icon in the upper right to open the menu. Select "Add to Home screen".
+</details> -->
+<br>    
+
+<!-- Visit project: [bookofchanges.app](https://www.bookofchanges.app/) -->
+
+---
+
+## 📚 `Tech Stack:`
+* The front-end is a `Next.js` progressive web-app written in `TypeScript`, styled with `Tailwind CSS` and deployed continuously to `Vercel`. 
+* The back-end is built with `Supabase`, where the `PostgreSQL` database stores user data.
+
+| TypeScript | React | Tailwind CSS | Next.js | Node.js | PostgreSQL
+| :----: | :----: | :----: | :----: | :----: | :----: | 
+| <img src="https://cdn.worldvectorlogo.com/logos/typescript.svg" width="50" height="50"/> | <img src="https://cdn.worldvectorlogo.com/logos/react-2.svg" width="50" height="50"/> | <img src="https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" width="50" height="50"/> | <img src="https://cdn.worldvectorlogo.com/logos/next-js.svg" style="background-color:white;padding:10px;" width="50" height="50"/> | <img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="50" height="50"/> | <img src="https://cdn.worldvectorlogo.com/logos/postgresql.svg" width="50" height="50"/>
+
+---
+
+## 💻 `Local Development:`
+### ❗️ `Requirements:`
+
+* Node.js <img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="25" height="25"/> 
+* Supabase environment variables  
+  * Change `env.local.example` to  `env.local`
+
+```bash
+$ # install dependencies
+$ npm i
+$ # start local development node.js server
+$ npm run dev
+$ # or
+$ yarn dev
+```
+
+---
+---
+#### `Bonus` <img src="https://cdn.worldvectorlogo.com/logos/python-5.svg" width="25" height="25"/> 
+For a Python  CLI version of this app: [github.com/Adamhunter108/i-ching](https://github.com/Adamhunter108/i-ching)
+
+
+
+<!-- # Next.js Subscription Payments Starter
 
 The all-in-one starter kit for high-performance SaaS applications.
 
@@ -193,4 +265,4 @@ npm run dev
 # or
 yarn
 yarn dev
-```
+``` -->

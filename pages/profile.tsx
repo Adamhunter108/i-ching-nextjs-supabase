@@ -44,7 +44,7 @@ export default function profile({ user, ichingReadings }: Props) {
           </svg>
         </div>
 
-        <h1 className="flex justify-center text-lg text-gray-300 mt-20">Profile for</h1>
+        <h1 className="flex justify-center text-lg text-gray-400 mt-20">Profile for</h1>
         <h2 className="flex justify-center text-xl text-gray-300 mt-1 mb-8"><i>{user.email}</i></h2>
 
         {/* <div className="flex flex-col items-center mt-10">
@@ -69,7 +69,7 @@ export default function profile({ user, ichingReadings }: Props) {
         {ichingReadings.length === 0 ?
         <p className="text-gray-300 flex justify-center">your saved readings will appear here</p> :
         <div className="flex flex-col items-center">
-            <h2 className="text-3xl font-bold text-gray-300 mb-4">your saved <span className="font-carter text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200">I Ching</span> readings</h2>
+            <p className="text-2xl text-gray-300 mb-4">your saved <span className="font-carter text-3xl text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200">I Ching</span> readings</p>
             <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                 {ichingReadings.reverse().map((reading) => (
                     <li key={reading.id} className="relative">
