@@ -31,24 +31,7 @@ export default function GetHex() {
         }, 2500);
     }
 
-    // const handleSaveClick = async () => {
-    //     if (!user) {
-    //       alert('Please sign in to save your reading')
-    //       return
-    //     }
-      
-    //     try {
-    //       const { data, error } = await supabaseClient
-    //         .from('readings')
-    //         .insert([{ value: randomValue, user_id: user.id }])
-    //       if (error) {
-    //         throw error
-    //       }
-    //       console.log('Saved reading:', data[0])
-    //     } catch (error) {
-    //       console.error('Error saving reading:', error)
-    //     }
-    //   }
+    // SAVE BUTTON
     const handleSaveClick = async () => {
         if (!user) {
           alert('You must be logged in to save a reading.')
@@ -69,7 +52,7 @@ export default function GetHex() {
           return
         }
       
-        alert('Reading saved successfully.')
+        alert('Reading saved to your profile.')
     }
       
 

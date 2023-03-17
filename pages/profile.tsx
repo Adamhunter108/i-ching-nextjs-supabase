@@ -44,19 +44,60 @@ export default function profile({ user, ichingReadings }: Props) {
           </svg>
         </div>
 
-        <h1 className="flex justify-center text-2xl text-gray-300 mt-20">Profile for</h1>
-        <h2 className="flex justify-center text-2xl text-gray-300 mt-1"><i>{user.email}</i></h2>
+        <h1 className="flex justify-center text-lg text-gray-300 mt-20">Profile for</h1>
+        <h2 className="flex justify-center text-xl text-gray-300 mt-1 mb-8"><i>{user.email}</i></h2>
 
-        <div className="flex flex-col items-center mt-10">
+        {/* <div className="flex flex-col items-center mt-10">
             <h2 className="text-xl font-bold text-gray-300 mb-2">I Ching Readings</h2>
             {ichingReadings.map((reading) => (
-                <div className="text-gray-400 mb-1" key={reading.id}>
-                Hexagram # {reading.reading_number} - {new Date(reading.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-
+                <div className="text-gray-400 mb-10" key={reading.id}>
+                    Hexagram # {reading.reading_number} - {new Date(reading.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    <Image 
+                        src={`/images/${reading.reading_number}.png`}
+                        alt='Hexagram'
+                        width={150}
+                        height={170}
+                        blurDataURL={`/images/${reading.reading_number}.png`}
+                        placeholder="blur"
+                    />
                 </div>
             ))}
-        </div>
+        </div> */}
 
+        <p className="pt-4 pb-4 flex justify-center text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200 text-3xl font-thin">Consult your past</p>
+
+        {ichingReadings.length === 0 ?
+        <p className="text-gray-300 flex justify-center">your saved readings will appear here</p> :
+        <div className="flex flex-col items-center">
+            <h2 className="text-3xl font-bold text-gray-300 mb-4">your saved <span className="font-carter text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200">I Ching</span> readings</h2>
+            <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+                {ichingReadings.reverse().map((reading) => (
+                    <li key={reading.id} className="relative">
+                    <div className="group block w-full overflow-hidden rounded-sm bg-indigo-900">
+                        <img src={`/images/${reading.reading_number}.png`} alt="" className="pointer-events-none object-cover group-hover:opacity-75" />
+                    </div>
+                    <p className="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-200">Hexagram # {reading.reading_number}</p>
+                    <p className="pointer-events-none block text-sm font-medium text-gray-300">{new Date(reading.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    </li>
+                ))}
+            </ul>
+        </div>
+        }
+
+        {/* <div className="flex flex-col items-center">
+            <h2 className="text-3xl font-bold text-gray-300 mb-4">your saved <span className="font-carter text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200">I Ching</span> readings</h2>
+            <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+                {ichingReadings.reverse().map((reading) => (
+                    <li key={reading.id} className="relative">
+                    <div className="group block w-full overflow-hidden rounded-sm bg-indigo-900">
+                        <img src={`/images/${reading.reading_number}.png`} alt="" className="pointer-events-none object-cover group-hover:opacity-75" />
+                    </div>
+                    <p className="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-200">Hexagram # {reading.reading_number}</p>
+                    <p className="pointer-events-none block text-sm font-medium text-gray-300">{new Date(reading.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    </li>
+                ))}
+            </ul>
+        </div> */}
 
     </div>
   )
