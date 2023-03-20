@@ -42,7 +42,7 @@ export default function Nav() {
                     I Ching
                 </h3>
 
-                <p className="text-lg text-gray-300 flex justify-center">{user ? `Signed in as ${user.email}` : null}</p>
+                <p className="text-sm text-gray-400 flex justify-center">{user ? `Signed in as ${user.email}` : null}</p>
                 
                 <Link href="/">
                     <div

@@ -52,7 +52,7 @@ export default function GetHex() {
           return
         }
       
-        alert('Reading saved to your profile.')
+        alert('Reading saved, check your profile to read more.')
     }
       
 
