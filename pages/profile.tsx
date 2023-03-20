@@ -79,7 +79,8 @@ export default function profile({ user, ichingReadings }: Props) {
             <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                 {ichingReadings.reverse().map((reading) => (
                     <li key={reading.id} className="relative">
-                      <Link className="group" href={`https://divination.com/iching/lookup/${reading.reading_number}-2/`} target="_blank">
+                      {/* <Link className="group" href={`https://divination.com/iching/lookup/${reading.reading_number}-2/`} target="_blank"> */}
+                      <Link className="group" href={`interpretations/${reading.reading_number}`}>
                         <div className="group block w-full overflow-hidden rounded-sm bg-gradient-to-b from-indigo-900 via-indigo-800 to-indigo-600">
                             <img src={`/images/${reading.reading_number}.png`} alt="" className="pointer-events-none object-cover group-hover:opacity-50" />
                         </div>

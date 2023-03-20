@@ -60,7 +60,7 @@ export default function GetHex() {
     <div>
         <Head>
             <title>Consult the I Ching: the Book of Changes</title>
-            <meta name="description" content="Consult the Book of Changes, get your daily I Ching reading and share your results." />
+            <meta name="description" content="Consult the Book of Changes, get an I Ching reading, save and share your results." />
         </Head>
 
         <ParticleBackGround />
@@ -104,7 +104,7 @@ export default function GetHex() {
                     </span>
 
                         {/* HEXAGRAM NUMBER */}
-                    <p className="flex justify-center text-sm">{value === data.id ? `Hexagram # ${value}` : null}</p>
+                    <p className="flex justify-center text-lg">{value === data.id ? `Hexagram # ${value}` : null}</p>
 
                         {/* TITLE */}
                     <div className="flex justify-center">
