@@ -1,12 +1,15 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Head from 'next/head'
+import Link from 'next/link'
 import Nav from '@/components/Nav'
 import { GetServerSidePropsContext } from 'next'
 import {
   createServerSupabaseClient,
-  User
+  User,
 } from '@supabase/auth-helpers-nextjs'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useUser } from '@/utils/useUser'
 import LoadingDots from '@/components/ui/LoadingDots'
 
@@ -26,23 +29,30 @@ interface Props {
 
 // export default function profile({ user }: { user: User }) {
 export default function profile({ user, ichingReadings }: Props) {
+    const router = useRouter()
     const [loading, setLoading] = useState(false)
     const { isLoading, subscription, userDetails } = useUser()
+    const supabaseClient = useSupabaseClient()
+    const [readings, setReadings] = useState<IchingReading[]>(ichingReadings)
 
-    /*  TODO: finish delete button
-    const deleteHandler = () => {
-        setLoading(true)
-        const { error } = await supabase
-          .from('iching_readings')
-          .delete()
-          .eq('id', id)
-        setLoading(false)
-        if (error) alert(error.message)
+
+    const deleteHandler = async (row: any) => {
+      setLoading(true)
+      const { error } = await supabaseClient
+        .from('iching_readings')
+        .delete()
+        .eq('id', row.id)
+        .eq('user_id', row.user_id)
+        .eq('reading_number', row.reading_number)
+        .eq('created_at', row.created_at)
+      setLoading(false)
+      if (error) alert(error.message)
+      setReadings(prevState => prevState.filter(r => r.id !== row.id))
+      location.reload()
     }
-    */
-
-    console.log(ichingReadings)
     
+    console.log(ichingReadings)
+
   return (
     <div>
         <Head>
@@ -60,7 +70,6 @@ export default function profile({ user, ichingReadings }: Props) {
 
         <h1 className="flex justify-center text-lg text-gray-400 mt-20">Profile for</h1>
         <h2 className="flex justify-center text-xl text-gray-300 mt-1 mb-8"><i>{user.email}</i></h2>
-
         <p className="pt-4 pb-4 flex justify-center text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200 text-3xl font-thin">Consult your past</p>
 
         {ichingReadings.length === 0 ?
@@ -70,20 +79,29 @@ export default function profile({ user, ichingReadings }: Props) {
             <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                 {ichingReadings.reverse().map((reading) => (
                     <li key={reading.id} className="relative">
-                    <div className="group block w-full overflow-hidden rounded-sm bg-indigo-900">
-                        <img src={`/images/${reading.reading_number}.png`} alt="" className="pointer-events-none object-cover group-hover:opacity-75" />
-                    </div>
-                    <p className="mt-2 block truncate text-sm font-medium text-gray-200">Hexagram # {reading.reading_number}</p>
-                    <p className="pointer-events-none block text-sm font-medium text-gray-300">{new Date(reading.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                    {/* <button
-                      type="button"
-                      onClick={() => deleteHandler(reading.id)}
-                      className="pt-1 rounded-full bg-indigo-600 p-1 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                      </svg>
-                    </button> */}
+                      <Link href={`https://divination.com/iching/lookup/${reading.reading_number}-2/`} target="_blank">
+                        <div className="group block w-full overflow-hidden rounded-sm bg-gradient-to-b from-indigo-900 via-indigo-800 to-indigo-600">
+                            <img src={`/images/${reading.reading_number}.png`} alt="" className="pointer-events-none object-cover group-hover:opacity-50" />
+                        </div>
+                        <div className="flex justify-center">
+                          <p className="mt-2 block truncate text-lg font-medium text-gray-200 hover:text-cyan-200">Hexagram # {reading.reading_number}</p>
+                        </div>
+                      </Link>
+                      <div className="flex justify-center">
+                        <p className="pointer-events-none block text-sm font-medium text-gray-400">{new Date(reading.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                      </div>
+                      <div className="pt-1 flex justify-center">
+                        <button
+                          title="Hate this reading? Delete it"
+                          type="button"
+                          onClick={() => deleteHandler(reading)}
+                          className="rounded-full bg-indigo-800 p-1 text-cyan-200 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                          </svg>
+                        </button>
+                      </div>
                     </li>
                 ))}
             </ul>
