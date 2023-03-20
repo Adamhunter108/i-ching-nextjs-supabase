@@ -12,17 +12,15 @@ class MyDocument extends Document {
             <link rel="manifest" href="/manifest.json" />
             <meta name="theme-color" content="#000000" />
 
-            {/* TODO: uncomment tags after launch */}
-
                 {/* OPEN GRAPH */}
             <meta property="og:site_name" content="I Ching: the Book of Changes" key="ogsitename" />
             <meta property="og:title" content="I Ching: the Book of Changes" key="og:title" />
-            <meta property="og:description" content="Consult the Book of Changes with a daily I Ching reading." key="ogdesc" />
-            {/* <meta property="og:url" content="https://www.bookofchanges.app" key="ogurl" />
-            <meta property="og:image" content="https://www.bookofchanges.app/icon-192x192.png" key="ogimage" /> */}
+            <meta property="og:description" content="Consult the Book of Changes with an I Ching reading and save and share your readings." key="ogdesc" />
+            <meta property="og:url" content="https://www.bookofchanges.app" key="ogurl" />
+            <meta property="og:image" content="https://www.bookofchanges.app/icon-192x192.png" key="ogimage" />
             <meta property="og:type" content="web-app" />
 
-            {/* <link rel="canonical" href="https://www.bookofchanges.app/" /> */}
+            <link rel="canonical" href="https://www.bookofchanges.app/" />
 
                 {/* FAVICONS  */}
             <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
