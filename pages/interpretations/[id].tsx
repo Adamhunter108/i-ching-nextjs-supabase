@@ -9,7 +9,7 @@ export default function Interpretations(props: any) {
     const router = useRouter()
     const routerID = router.query.id
     console.log(typeof routerID)
-    const routerIDNum = parseInt(routerID)
+    const routerIDNum = parseInt(routerID as string, 10)
     console.log(typeof routerIDNum)
 
   return (
