@@ -25,7 +25,7 @@ export default function Interpretations() {
             </svg>
         </div>
 
-        <div className="pt-2 lg:pt-5 pl-3 lg:pl-72">
+        <div className="pl-3 lg:pl-72">
         <Link href="/profile">
             <button
                 className="lg:fixed lg:z-50 px-3.5 mt-8 py-2 bg-gradient-to-b from-indigo-800 via-indigo-600 to-indigo-400 text-cyan-100 hover:bg-gradient-to-t from-indigo-800 via-indigo-600 to-indigo-400 font-light rounded-md text-lg flex flex-row items-center"
@@ -33,7 +33,7 @@ export default function Interpretations() {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
                 </svg>
-                <span className="pl-1">Back</span>
+                {/* <span className="pl-1">Back</span> */}
             </button>
         </Link>
         </div>
