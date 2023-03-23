@@ -8,6 +8,9 @@ import Layout from '@/components/Layout';
 import { MyUserContextProvider } from '@/utils/useUser';
 import type { Database } from 'types_db';
 
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 import 'styles/main.css';
 import 'styles/chrome-bug.css';
 
@@ -25,6 +28,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <MyUserContextProvider>
           {/* <Layout> */}
             <Component {...pageProps} />
+            <ToastContainer />
           {/* </Layout> */}
         </MyUserContextProvider>
       </SessionContextProvider>

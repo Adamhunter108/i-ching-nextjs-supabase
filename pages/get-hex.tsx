@@ -7,6 +7,7 @@ import ParticleBackGround from '@/components/ParticleBackground'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useUser } from '@/utils/useUser'
+import { toast } from 'react-toastify'
 
 export default function GetHex() {
     const supabaseClient = useSupabaseClient()
@@ -25,20 +26,32 @@ export default function GetHex() {
     const [isCopied, setIsCopied] = React.useState<boolean>(false)
 
     const handleCopyClick = () => {
-        setIsCopied(true);
+        // setIsCopied(true)
+        toast('Reading copied to your clipboard, paste anywhere!', { 
+            hideProgressBar: true, 
+            autoClose: 2000, 
+            type: 'info',
+            theme: 'dark',
+            style: {
+                backgroundColor: '#333',
+                color: '#fff'
+            }
+        })
         setTimeout(() => {
-        setIsCopied(false);
-        }, 2500);
+        setIsCopied(false)
+        }, 2500)
     }
 
     // SAVE BUTTON
     const handleSaveClick = async () => {
         if (!user) {
-          alert('You must be logged in to save a reading.')
+        //   alert('You must be logged in to save a reading.')
+          toast('You must be logged in to save a reading.', { hideProgressBar: true, autoClose: 2000, type: 'error', theme: 'dark' })
           return
         }
         if (!value) {
-          alert('You must first perform a divination.')
+        //   alert('You must first perform a divination.')
+          toast('You must first perform a divination.', { hideProgressBar: true, autoClose: 2000, type: 'error', theme: 'dark' })
           return
         }
       
@@ -48,11 +61,22 @@ export default function GetHex() {
       
         if (error) {
           console.error(error)
-          alert('An error occurred while saving the reading.')
+        //   alert('An error occurred while saving the reading.')
+          toast('An error occurred while saving the reading.', { hideProgressBar: true, autoClose: 2000, type: 'error', theme: 'dark' })
           return
         }
       
-        alert('Reading saved, check your profile to read more.')
+        // alert('Reading saved, check your profile to read more.')
+        toast('Reading saved to your profile!', { 
+            hideProgressBar: true, 
+            autoClose: 2000, 
+            type: 'success',
+            theme: 'dark',
+            style: {
+                backgroundColor: '#333',
+                color: '#fff'
+            }
+        })
     }
       
 
@@ -68,7 +92,6 @@ export default function GetHex() {
         <Nav />
 
         <main>
-        {/* <ParticleBackGround /> */}
 
             {/* YIN YANG SVG */}
         <div className="flex justify-center mt-4 pb-10">
@@ -80,7 +103,6 @@ export default function GetHex() {
         <div className="flex justify-center">
             {value ? null : <p className="font-semibold text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200">kill the noise</p>}
         </div>
-
 
         <ul className="">
             {HexInterpretations.map((data) => (
@@ -119,7 +141,6 @@ export default function GetHex() {
             ))}
         </ul>
 
-
         {value ? null :
             <div className="flex justify-center pt-56">
                 <button
@@ -131,7 +152,6 @@ export default function GetHex() {
                 </button>
             </div>
         }
-
 
             {/* SHARE BUTTON */}
         <div className="flex justify-center pt-10">
