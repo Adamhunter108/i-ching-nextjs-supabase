@@ -45,12 +45,10 @@ export default function GetHex() {
     // SAVE BUTTON
     const handleSaveClick = async () => {
         if (!user) {
-        //   alert('You must be logged in to save a reading.')
           toast('You must be logged in to save a reading.', { hideProgressBar: true, autoClose: 2000, type: 'error', theme: 'dark' })
           return
         }
         if (!value) {
-        //   alert('You must first perform a divination.')
           toast('You must first perform a divination.', { hideProgressBar: true, autoClose: 2000, type: 'error', theme: 'dark' })
           return
         }
@@ -61,12 +59,10 @@ export default function GetHex() {
       
         if (error) {
           console.error(error)
-        //   alert('An error occurred while saving the reading.')
           toast('An error occurred while saving the reading.', { hideProgressBar: true, autoClose: 2000, type: 'error', theme: 'dark' })
           return
         }
       
-        // alert('Reading saved, check your profile to read more.')
         toast('Reading saved to your profile!', { 
             hideProgressBar: true, 
             autoClose: 2000, 
