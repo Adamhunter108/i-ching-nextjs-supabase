@@ -12,6 +12,8 @@ import {
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useUser } from '@/utils/useUser'
 import LoadingDots from '@/components/ui/LoadingDots'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 
 export interface IchingReading {
@@ -29,6 +31,16 @@ interface Props {
 
 // export default function profile({ user }: { user: User }) {
 export default function profile({ user, ichingReadings }: Props) {
+
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      // disable: 'phone',
+      duration: 800,
+      easing: 'ease-out',
+    })
+  })
+
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const { isLoading, subscription, userDetails } = useUser()
@@ -68,12 +80,6 @@ export default function profile({ user, ichingReadings }: Props) {
           </svg>
         </div>
         <p className="pt-10 pb-2 flex justify-center text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200 text-3xl font-thin">Consult your past</p>
-
-
-
-{/* ///////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////// */}
-
 
       <div className="py-16 xl:py-36 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden">
         <div className="max-w-max lg:max-w-7xl mx-auto">
@@ -138,7 +144,7 @@ export default function profile({ user, ichingReadings }: Props) {
                   <p className="pb-2 text-2xl text-gray-300 mb-4">your saved <span className="font-carter text-3xl text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200">I Ching</span> readings</p>
                   <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                       {ichingReadings.reverse().map((reading) => (
-                          <li key={reading.id} className="relative">
+                          <li data-aos="flip-right" data-aos-delay="200" key={reading.id} className="relative">
                             {/* <Link className="group" href={`https://divination.com/iching/lookup/${reading.reading_number}-2/`} target="_blank"> */}
                             <Link className="group" href={`interpretations/${reading.reading_number}`}>
                               <div className="group block w-full overflow-hidden rounded-sm bg-gradient-to-b from-indigo-900 via-indigo-800 to-indigo-600">
