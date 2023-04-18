@@ -37,7 +37,7 @@ export default function profile({ user, ichingReadings }: Props) {
       once: true,
       // disable: 'phone',
       duration: 800,
-      easing: 'ease-out',
+      easing: 'ease-out-sine',
     })
   })
 
@@ -144,7 +144,7 @@ export default function profile({ user, ichingReadings }: Props) {
                   <p className="pb-2 text-2xl text-gray-300 mb-4">your saved <span className="font-carter text-3xl text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200">I Ching</span> readings</p>
                   <ul role="list" className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                       {ichingReadings.reverse().map((reading) => (
-                          <li data-aos="flip-right" data-aos-delay="200" key={reading.id} className="relative">
+                          <li data-aos="fade-up" data-aos-delay="200" key={reading.id} className="relative">
                             {/* <Link className="group" href={`https://divination.com/iching/lookup/${reading.reading_number}-2/`} target="_blank"> */}
                             <Link className="group" href={`interpretations/${reading.reading_number}`}>
                               <div className="group block w-full overflow-hidden rounded-sm bg-gradient-to-b from-indigo-900 via-indigo-800 to-indigo-600">
