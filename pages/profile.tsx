@@ -17,16 +17,16 @@ import 'aos/dist/aos.css'
 
 
 export interface IchingReading {
-    id: number
-    user_id: string
-    reading_number: number
-    created_at: string
+  id: number
+  user_id: string
+  reading_number: number
+  created_at: string
 }
 
 interface Props {
-    user: User;
-    ichingReadings: IchingReading[];
-  }
+  user: User;
+  ichingReadings: IchingReading[];
+}
   
 
 // export default function profile({ user }: { user: User }) {
@@ -41,45 +41,45 @@ export default function profile({ user, ichingReadings }: Props) {
     })
   })
 
-    const router = useRouter()
-    const [loading, setLoading] = useState(false)
-    const { isLoading, subscription, userDetails } = useUser()
-    const supabaseClient = useSupabaseClient()
-    const [readings, setReadings] = useState<IchingReading[]>(ichingReadings)
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
+  const { isLoading, subscription, userDetails } = useUser()
+  const supabaseClient = useSupabaseClient()
+  const [readings, setReadings] = useState<IchingReading[]>(ichingReadings)
 
 
-    const deleteHandler = async (row: any) => {
-      setLoading(true)
-      const { error } = await supabaseClient
-        .from('iching_readings')
-        .delete()
-        .eq('id', row.id)
-        .eq('user_id', row.user_id)
-        .eq('reading_number', row.reading_number)
-        .eq('created_at', row.created_at)
-      setLoading(false)
-      if (error) alert(error.message)
-      setReadings(prevState => prevState.filter(r => r.id !== row.id))
-      location.reload()
-    }
-    
-    console.log(ichingReadings)
+  const deleteHandler = async (row: any) => {
+    setLoading(true)
+    const { error } = await supabaseClient
+      .from('iching_readings')
+      .delete()
+      .eq('id', row.id)
+      .eq('user_id', row.user_id)
+      .eq('reading_number', row.reading_number)
+      .eq('created_at', row.created_at)
+    setLoading(false)
+    if (error) alert(error.message)
+    setReadings(prevState => prevState.filter(r => r.id !== row.id))
+    location.reload()
+  }
+  
+  // console.log(ichingReadings)
 
   return (
     <div>
-        <Head>
-            <title>Your profile</title>
-            <meta name="description" content="Consult the Book of Changes, get your daily I Ching reading and share your results." />
-        </Head>
+      <Head>
+          <title>Your profile</title>
+          <meta name="description" content="Consult the Book of Changes, get your daily I Ching reading and share your results." />
+      </Head>
 
-        <Nav />
+      <Nav />
 
-        <div className="flex justify-center mt-4">
-          <svg className="animate-spin-slow w-16 h-16" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <path d="M256 128C238.3 128 224 142.4 224 160S238.3 192 256 192s31.97-14.38 31.97-32S273.7 128 256 128zM256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 384c-17.68 0-31.97-14.38-31.97-32S238.3 320 256 320s31.97 14.38 31.97 32S273.7 384 256 384zM256 256c-53.04 0-96.03 43-96.03 96S202.1 448 256 448c-106.1 0-192.1-86-192.1-192S149.9 64 256 64c53.04 0 96.03 43 96.03 96S309 256 256 256z"/>
-          </svg>
-        </div>
-        <p className="pt-10 pb-2 flex justify-center text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200 text-3xl font-thin">Consult your past</p>
+      <div className="flex justify-center mt-4">
+        <svg className="animate-spin-slow w-16 h-16" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <path d="M256 128C238.3 128 224 142.4 224 160S238.3 192 256 192s31.97-14.38 31.97-32S273.7 128 256 128zM256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 384c-17.68 0-31.97-14.38-31.97-32S238.3 320 256 320s31.97 14.38 31.97 32S273.7 384 256 384zM256 256c-53.04 0-96.03 43-96.03 96S202.1 448 256 448c-106.1 0-192.1-86-192.1-192S149.9 64 256 64c53.04 0 96.03 43 96.03 96S309 256 256 256z"/>
+        </svg>
+      </div>
+      <p className="pt-10 pb-2 flex justify-center text-transparent bg-clip-text bg-gradient-to-b from-indigo-200 to-teal-200 text-3xl font-thin">Consult your past</p>
 
       <div className="py-16 xl:py-36 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden">
         <div className="max-w-max lg:max-w-7xl mx-auto">
@@ -185,44 +185,39 @@ export default function profile({ user, ichingReadings }: Props) {
         </div>
       </div>
 
-{/* ///////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////// */}
-
     </div>
   )
 }
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-    const supabase = createServerSupabaseClient(ctx)
-    const {
-      data: { session }
-    } = await supabase.auth.getSession()
-  
-    if (!session)
-      return {
-        redirect: {
-          destination: '/signin',
-          permanent: false
-        }
-    };
-  
-    // Retrieve the Iching readings from the database
-    const { data: ichingReadings, error } = await supabase
-    .from('iching_readings')
-    .select('*')
-    .eq('user_id', session.user.id)
+  const supabase = createServerSupabaseClient(ctx)
+  const {
+    data: { session }
+  } = await supabase.auth.getSession()
 
-    // if (error) {
-    //     console.error(error)
-    // }
-
-
-
+  if (!session)
     return {
-      props: {
-        initialSession: session,
-        user: session.user,
-        ichingReadings: ichingReadings ?? [],
+      redirect: {
+        destination: '/signin',
+        permanent: false
       }
+  };
+
+  // Retrieve the Iching readings from the database
+  const { data: ichingReadings, error } = await supabase
+  .from('iching_readings')
+  .select('*')
+  .eq('user_id', session.user.id)
+
+  // if (error) {
+  //     console.error(error)
+  // }
+
+  return {
+    props: {
+      initialSession: session,
+      user: session.user,
+      ichingReadings: ichingReadings ?? [],
     }
   }
+}
