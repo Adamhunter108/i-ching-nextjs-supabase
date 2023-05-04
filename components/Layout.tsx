@@ -1,9 +1,11 @@
+// not using this layout anymore
+
 import { PropsWithChildren } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import Navbar from '@/components/ui/Navbar';
-import Footer from '@/components/ui/Footer';
+// import Navbar from '@/components/ui/Navbar';
+// import Footer from '@/components/ui/Footer';
 
 import { PageMeta } from '../types';
 
@@ -16,14 +18,14 @@ export default function Layout({ children, meta: pageMeta }: Props) {
   const meta = {
     title: 'I Ching: Book of Changes',
     description: 'Consult the Book of Changes, get a daily I Ching hexagram and reading.',
-    cardImage: '/og.png',
+    // cardImage: '/og.png',
     ...pageMeta
   };
 
   return (
     <>
       <Head>
-        <title>{meta.title}</title>
+        {/* <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
         <link href="/favicon.ico" rel="shortcut icon" />
         <meta content={meta.description} name="description" />
@@ -40,9 +42,9 @@ export default function Layout({ children, meta: pageMeta }: Props) {
         <meta name="twitter:site" content="@vercel" />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:image" content={meta.cardImage} />
+        <meta name="twitter:image" content={meta.cardImage} /> */}
       </Head>
-      <Navbar />
+      {/* <Navbar /> */}
       <main id="skip">{children}</main>
       {/* <Footer /> */}
     </>
