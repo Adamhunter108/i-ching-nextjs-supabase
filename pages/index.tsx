@@ -2,24 +2,16 @@ import { PropsWithChildren } from 'react';
 import { GetStaticPropsResult } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-
-// import Pricing from '@/components/Pricing';
-import { getActiveProductsWithPrices } from '@/utils/supabase-client';
-import { Product } from 'types';
 import { PageMeta } from 'types';
-
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 
-interface Props {
-  products: Product[];
-}
 
 interface Props extends PropsWithChildren {
   meta?: PageMeta;
 }
 
-export default function PricingPage({ products, meta: pageMeta }: Props) {
+export default function HomePage({ meta: pageMeta }: Props) {
 
   const router = useRouter();
   const meta = {
@@ -41,13 +33,13 @@ export default function PricingPage({ products, meta: pageMeta }: Props) {
   )
 }
 
-export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
-  const products = await getActiveProductsWithPrices();
+// Don't need getStaticProps() right now
+// export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
 
-  return {
-    props: {
-      products
-    },
-    revalidate: 60
-  };
-}
+//   return {
+//     props: {
+      
+//     },
+//     revalidate: 60
+//   };
+// }
