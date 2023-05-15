@@ -83,7 +83,8 @@ export default function GetHex() {
             <meta name="description" content="Consult the Book of Changes, get an I Ching reading, save and share your results." />
         </Head>
 
-        <ParticleBackGround />
+        {value ? <ParticleBackGround /> : null}
+        {/* <ParticleBackGround /> */}
 
         <Nav />
 
