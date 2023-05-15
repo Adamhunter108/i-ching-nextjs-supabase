@@ -10,7 +10,7 @@ export default function Hero() {
     return (
         <div>
             <main>
-                <ParticleBackGround />
+                {/* <ParticleBackGround /> */}
                 <div className="flex justify-center mt-10 animate-spin-slow">
                 <Image
                     src="/images/yinyang.png"
