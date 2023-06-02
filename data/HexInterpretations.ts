@@ -26,8 +26,8 @@ const HexInterpretations: HexData[] = [
     },
     {
         id: 3,
-        title: 'Difficulty at the Beginnging',
-        description: 'One of the more straight forward Hexagrams.  This Hexagram was interpreted by ancient sages as a blade of grass trying to break through an obstacle before it sprouts out of the earth.  This Hexagram explicity calls for nonaction.  Bear the discomfort of your situation and the chaos will clear.',
+        title: 'Difficulty at the Beginning',
+        description: 'One of the more straight forward Hexagrams.  This Hexagram was interpreted by ancient sages as a blade of grass trying to break through an obstacle before it sprouts out of the earth.  This Hexagram explicitly calls for non-action.  Bear the discomfort of your situation and the chaos will clear.',
         image: '/images/3.png',
         upper: 'Water',
         lower: 'Thunder',
@@ -43,7 +43,7 @@ const HexInterpretations: HexData[] = [
     {
         id: 5,
         title: 'Waiting',
-        description: 'This Hexagram insists that there is a situation that cannot be corrected by force. Misfortune will unfold if attention to detail is not paid in full. Do not sit idly by in discomfort; instead practice patience and careful attention. Be careful not to compare yourself or siutation to others.',
+        description: 'This Hexagram insists that there is a situation that cannot be corrected by force. Misfortune will unfold if attention to detail is not paid in full. Do not sit idly by in discomfort; instead practice patience and careful attention. Be careful not to compare yourself or situation to others.',
         image: '/images/5.png',
         upper: 'Water',
         lower: 'Heaven',
@@ -99,7 +99,7 @@ const HexInterpretations: HexData[] = [
     {
         id: 12,
         title: 'Standstill',
-        description: 'This hexagram shows that inferior influences are affecting you in a negative way.  Energy vampires are real.  When they feed you may feel stuck.  The only way to become un-stuck is to look inward.  Seek solitude and find yourself.  Cut off the energy vampires, even if temporarily.',
+        description: 'This hexagram shows that inferior influences are affecting you in a negative way.  Energy vampires are real.  When they feed you may feel stuck.  The only way to become unstuck is to look inward.  Seek solitude and find yourself.  Cut off the energy vampires, even if temporarily.',
         image: '/images/12.png',
         upper: 'Heaven',
         lower: 'Earth',
@@ -147,7 +147,7 @@ const HexInterpretations: HexData[] = [
     {
         id: 18,
         title: 'Decay',
-        description: 'Work on what has been spoiled.  Something negative has settled in.  Possibly greed, stagnation, anger, vengeful thinking, or other ego driven negativities.  The I Ching offers specific intruction to root out this decay.  It suggests three full days of deliberation of the defect, one day working on a resolve and then three final days of action to ensure issue does not arise again.  One week from right now, what will be different?',
+        description: 'Work on what has been spoiled.  Something negative has settled in.  Possibly greed, stagnation, anger, vengeful thinking, or other ego driven negativities.  The I Ching offers specific instruction to root out this decay.  It suggests three full days of deliberation of the defect, one day working on a resolve and then three final days of action to ensure issue does not arise again.  One week from right now, what will be different?',
         image: '/images/18.png',
         upper: 'Mountain',
         lower: 'Wind',
@@ -187,7 +187,7 @@ const HexInterpretations: HexData[] = [
     {
         id: 23,
         title: 'Splitting Apart',
-        description: 'Receiving this Hexagram indicates that a period has been entered where inferior and negative influences will prevail.  The I Ching describes that in this period, you may feel like you are being split apart from from your higher self.  Be like a mountain on the earth.  Be still, quiet and strong.',
+        description: 'Receiving this Hexagram indicates that a period has been entered where inferior and negative influences will prevail.  The I Ching describes that in this period, you may feel like you are being split apart from your higher self.  Be like a mountain on the earth.  Be still, quiet and strong.',
         image: '/images/23.png',
         upper: 'Mountain',
         lower: 'Earth',
@@ -363,7 +363,7 @@ const HexInterpretations: HexData[] = [
     {
         id: 45,
         title: 'Gathering Together',
-        description: 'This Hexagram shows that there is strength is community.  This Hexagram also encourages you to devlop your character into a leader.  Great communities often have great leaders at the center.  Lead by example.',
+        description: 'This Hexagram shows that there is strength is community.  This Hexagram also encourages you to develop your character into a leader.  Great communities often have great leaders at the center.  Lead by example.',
         image: '/images/45.png',
         upper: 'Lake',
         lower: 'Earth',
@@ -499,7 +499,7 @@ const HexInterpretations: HexData[] = [
     {
         id: 62,
         title: 'Preponderance of the Small',
-        description: 'Thunder on a mountain.  In a great storm a wise bird waits patiently before returning to her nest.  It is a difficult and dangerous time. Integrity and nonaction is how you will end this difficult time.  Force and reactions in fear and anger will do nothing but make it worse.',
+        description: 'Thunder on a mountain.  In a great storm a wise bird waits patiently before returning to her nest.  It is a difficult and dangerous time. Integrity and non-action is how you will end this difficult time.  Force and reactions in fear and anger will do nothing but make it worse.',
         image: '/images/62.png',
         upper: 'Thunder',
         lower: 'Mountain',
